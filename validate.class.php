@@ -21,10 +21,10 @@ require_once 'regex/regex.class.php';
 class Validate
 {
   const CARD_AMERICAN_EXPRESS = 'amex';
-  const CARD_DISCOVER     = 'discover';
-  const CARD_MASTER_CARD    = 'mc';
-  const CARD_VISA       = 'visa';
-  const CARD_UNKNOWN      = 'unknown';
+  const CARD_DISCOVER         = 'discover';
+  const CARD_MASTER_CARD      = 'mc';
+  const CARD_VISA             = 'visa';
+  const CARD_UNKNOWN          = 'unknown';
 
   /**
   * Validate an e-mail address
