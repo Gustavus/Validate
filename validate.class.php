@@ -18,7 +18,8 @@ require_once 'regex/regex.class.php';
  * @author Joe Lencioni <joe@gustavus.edu>
  * @package General
  */
-class Validate {
+class Validate
+{
   const CARD_AMERICAN_EXPRESS = 'amex';
   const CARD_DISCOVER     = 'discover';
   const CARD_MASTER_CARD    = 'mc';
@@ -125,12 +126,12 @@ class Validate {
     $number     = preg_replace('/\D/', '', $number);
 
     // Set the string length and parity
-    $number_length  = strlen($number);
-    $parity     = $number_length % 2;
+    $numberLength  = strlen($number);
+    $parity     = $numberLength % 2;
 
     // Loop through each digit and do the maths
     $total  = 0;
-    for ($i = 0; $i < $number_length; ++$i) {
+    for ($i = 0; $i < $numberLength; ++$i) {
       $digit  = $number[$i];
       // Multiply alternate digits by two
       if ($i % 2 == $parity) {
