@@ -79,11 +79,12 @@ class Validate {
 
   public static function date($date)
   {
-    // if the date is an invalid format
-    if (!preg_match(RegEx::date(), $date, $matches)) {
-      return false;
+    $date = str_replace('-', '/', $date);
+    $date = date_parse($date);
+    if (checkdate($date['month'], $date['day'], $date['year']) && !isset($date['tz_abbr']) && empty($date['errors'])) {
+      return true;
     }
-    return true;
+    return false;
   }
 
   /**
