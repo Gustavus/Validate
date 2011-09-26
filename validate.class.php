@@ -82,7 +82,7 @@ class Validate
   {
     $date = str_replace('-', '/', $date);
     $date = date_parse($date);
-    if (checkdate($date['month'], $date['day'], $date['year']) && !isset($date['tz_abbr']) && empty($date['errors'])) {
+    if (checkdate($date['month'], $date['day'], $date['year']) && !isset($date['tz_abbr']) && $date['error_count'] === 0) {
       return true;
     }
     return false;
