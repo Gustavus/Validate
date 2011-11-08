@@ -72,7 +72,8 @@ class Validate
   }
 
   /**
-  * Validate a date in MM/DD/YYYY
+  * Validate a date in MM/DD/YYYY or YYYY/MM/DD
+  * MM and DD can be single digits
   *
   * @param string $date
   * @return bool
@@ -82,7 +83,7 @@ class Validate
   {
     $date = str_replace('-', '/', $date);
     $date = date_parse($date);
-    if (checkdate($date['month'], $date['day'], $date['year']) && !isset($date['tz_abbr']) && $date['error_count'] === 0) {
+    if (checkdate($date['month'], $date['day'], $date['year']) && !isset($date['tz_abbr']) && $date['error_count'] === 0 && count($date['year']) === 4) {
       return true;
     }
     return false;
