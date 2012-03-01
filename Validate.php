@@ -5,6 +5,8 @@
 
 namespace Gustavus\Validate;
 
+use Gustavus\Regex\Regex;
+
 /**
  * Validates data
  *
@@ -48,7 +50,7 @@ class Validate
     }
 
     // if the email address is an invalid format (for a more robust version see http://code.iamcal.com/php/rfc822/)
-    if (!preg_match(RegEx::emailAddress(), $email, $matches)) {
+    if (!preg_match(Regex::emailAddress(), $email, $matches)) {
       return false;
     }
 
