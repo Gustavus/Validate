@@ -1,10 +1,6 @@
 <?php
 /**
  * @package General
- *
- * $Id: validate.class.php 7 2010-06-30 20:57:14Z jlencion $
- * @version $Revision: 7 $
- * $Date: 2010-06-30 15:57:14 -0500 (Wed, 30 Jun 2010) $
  */
 
 namespace Gustavus\Validate;
