@@ -143,10 +143,10 @@ class Validate
         if ($digit > 9) {
           $digit -= 9;
         }
-      } // if
+      }
       // Total up the digits
       $total += $digit;
-    } // for
+    }
 
     // If the total mod 10 equals 0, the number is valid
     return ($total % 10 == 0) ? true : false;
