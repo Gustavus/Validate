@@ -131,6 +131,8 @@ class ValidateTest extends Test
       array(Validate::CARD_UNKNOWN, '6331101999990016'), // Switch/Solo (Paymentech)
 
 
+      array(false, ''),
+      array(false, '0'),
       array(false, '1234567812345678'),
     );
   }
@@ -159,6 +161,17 @@ class ValidateTest extends Test
   public function luhn($cardType, $cardNumber)
   {
     $this->assertSame(is_string($cardType), $this->call('\Gustavus\Validate\Validate', 'luhn', array($cardNumber)));
+  }
+
+  /**
+   * @test
+   * @dataProvider cardData
+   * @param string $cardType
+   * @param string $cardNumber
+   */
+  public function creditCard($cardType, $cardNumber)
+  {
+    $this->assertSame($cardType, Validate::creditCard($cardNumber));
   }
 
 
