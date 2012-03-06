@@ -95,4 +95,51 @@ class ValidateTest extends Test
   {
     $this->assertSame($expected, Validate::date($date));
   }
+
+  /**
+   * @return array
+   * @link http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
+   */
+  public static function cardData()
+  {
+    return array(
+      array(Validate::CARD_AMERICAN_EXPRESS, '378282246310005'),
+      array(Validate::CARD_AMERICAN_EXPRESS, '371449635398431'),
+      array(Validate::CARD_AMERICAN_EXPRESS, '378734493671000'), // American Express Corporate
+
+      //array(Validate::CARD_UNKNOWN, '5610591081018250'), // Australian BankCard (defunct)
+      array(Validate::CARD_UNKNOWN, '30569309025904'), // Diners Club
+      array(Validate::CARD_UNKNOWN, '38520000023237'), // Diners Club
+
+      array(Validate::CARD_DISCOVER, '6011111111111117'), // Discover
+      array(Validate::CARD_DISCOVER, '6011000990139424'), // Discover
+
+      array(Validate::CARD_UNKNOWN, '3530111333300000'), // JCB
+      array(Validate::CARD_UNKNOWN, '3566002020360505'), // JCB
+
+      array(Validate::CARD_MASTER_CARD, '5555555555554444'), // MasterCard
+      array(Validate::CARD_MASTER_CARD, '5105105105105100'), // MasterCard
+
+      array(Validate::CARD_VISA, '4111111111111111'), // Visa
+      array(Validate::CARD_VISA, '4012888888881881'), // Visa
+
+      // According to PayPal, even though this number has a different character count than the other test numbers, it is the correct and functional number.
+      array(Validate::CARD_VISA, '4222222222222'), // Visa
+
+      // array(Validate::CARD_UNKNOWN, '76009244561'), // Dankort (PBS)
+      // array(Validate::CARD_UNKNOWN, '5019717010103742'), // Dankort (PBS)
+      array(Validate::CARD_UNKNOWN, '6331101999990016'), // Switch/Solo (Paymentech)
+    );
+  }
+
+  /**
+   * @test
+   * @dataProvider cardData
+   * @param string $cardType
+   * @param string $cardNumber
+   */
+  public function cardType($cardType, $cardNumber)
+  {
+    $this->assertSame($cardType, $this->call('\Gustavus\Validate\Validate', 'cardType', array($cardNumber)));
+  }
 }
