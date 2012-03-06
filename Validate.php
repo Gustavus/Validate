@@ -124,6 +124,10 @@ class Validate
     // Strip any non-digits (useful for credit card numbers with spaces and hyphens)
     $number     = preg_replace('/\D/', '', $number);
 
+    if (empty($number)) {
+      return false;
+    }
+
     // Set the string length and parity
     $numberLength  = strlen($number);
     $parity     = $numberLength % 2;
