@@ -129,6 +129,9 @@ class ValidateTest extends Test
       // array(Validate::CARD_UNKNOWN, '76009244561'), // Dankort (PBS)
       // array(Validate::CARD_UNKNOWN, '5019717010103742'), // Dankort (PBS)
       array(Validate::CARD_UNKNOWN, '6331101999990016'), // Switch/Solo (Paymentech)
+
+
+      array(false, '1234567812345678'),
     );
   }
 
@@ -140,6 +143,23 @@ class ValidateTest extends Test
    */
   public function cardType($cardType, $cardNumber)
   {
+    if ($cardType === false) {
+      $cardType = Validate::CARD_UNKNOWN;
+    }
+
     $this->assertSame($cardType, $this->call('\Gustavus\Validate\Validate', 'cardType', array($cardNumber)));
   }
+
+  /**
+   * @test
+   * @dataProvider cardData
+   * @param string $cardType
+   * @param string $cardNumber
+   */
+  public function luhn($cardType, $cardNumber)
+  {
+    $this->assertSame(is_string($cardType), $this->call('\Gustavus\Validate\Validate', 'luhn', array($cardNumber)));
+  }
+
+
 }
